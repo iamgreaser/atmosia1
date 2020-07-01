@@ -1,8 +1,8 @@
 package chenthread.gm.atmosia1.mixin;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+//import net.minecraft.entity.LivingEntity;
+//import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
-public class ExampleMixin {
+public class EntityMixin {
 	@Shadow public World world;
 
 	@Shadow public BlockPos getBlockPos() { return null; }

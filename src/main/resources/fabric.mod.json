@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "modid",
+  "version": "${version}",
+
+  "name": "Atmosia 1",
+  "description": "Give Minecraft some atmosphere.",
+  "authors": [
+    "GreaseMonkey"
+  ],
+  "contact": {
+    "homepage": "https://github.com/iamgreaser/atmosia1",
+    "sources": "https://github.com/iamgreaser/atmosia1"
+  },
+
+  "license": "Zlib",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "chenthread.gm.atmosia1.Atmosia1Mod"
+    ]
+  },
+  "mixins": [
+    "atmosia1.mixins.json"
+  ],
+
+  "depends": {
+    "cardinal-components-base": ">=2.4.0",
+    "cardinal-components-chunk": ">=2.4.0",
+    "cardinal-components-world": ">=2.4.0",
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

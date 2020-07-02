@@ -13,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import chenthread.gm.atmosia1.Atmosia1Mod;
+import chenthread.gm.atmosia1.atmos.AtmosComponent;
+
 @Mixin(Entity.class)
 public class EntityMixin {
 	@Shadow public World world;
@@ -31,7 +34,8 @@ public class EntityMixin {
 		if (((Object)this) instanceof Entity) {
 			Vec3d pos = this.getPos();
 
-			Vec3d accel = this.getAirPressureDerivativeAtPos(pos);
+			Vec3d derivative = this.getAirPressureDerivativeAtPos(pos);
+			Vec3d accel = derivative.multiply(1.0d);
 
 			Vec3d vnew = this.getVelocity().add(accel);
 			this.setVelocity(vnew);
@@ -116,8 +120,9 @@ public class EntityMixin {
 
 	protected double getAirPressureAtBlockPos(BlockPos bpos)
 	{
-		double result = this.world.getReceivedRedstonePower(bpos)/15.0d;
-		//result *= 0.1d;
+		double result = Atmosia1Mod.ATMOS_COMPONENT.maybeGet(this.world.getChunk(bpos)).map(
+			(AtmosComponent component) -> component.getAtmosInAtm(bpos)
+		).orElse(0.0d);
 		return result;
 	}
 }
